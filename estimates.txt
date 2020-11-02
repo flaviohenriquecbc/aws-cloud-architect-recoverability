@@ -6,13 +6,13 @@ For this estimations, we assume we have a Multi-AZ and Multi-Region database. It
 The RTO (Recovery Time Objective) for a single AZ outage is the maximum duration of a service interruption for switching from one AZ to the standby one in the same region (inside the subnet group).
 
 - If the outage doesn't occur in the active AZ, the users won't be affected by the downtime, so the RTO is zero.
-- If the outage occurs in the active AZ: Since we configured the DB to be Multi-AZ, Amazon RDS will detect and failover on the main AZ and promote the corresponding standby instance to primary. It takes typically around 60-120 seconds.
+- If the outage occurs in the active AZ: Since we configured the DB to be Multi-AZ, Amazon RDS will detect and failover on the main AZ and promote the corresponding standby instance to primary automatically. It takes typically around 60-120 seconds.
 
 2. Minimum RTO for a single region outage
 The RTO for a single region outage is the maximum duration of a service interruption for switching from one region to another.
 
 - If the outage doesn't occur in the active region, the users won't be affected by the downtime, so the RTO is zero.
-- If the outage occurs in the active AZ: As we set the the Secondary region as being a Read replica, we have continuous replication of our data between the regions. Since the Secondary instance is already active, we will have a close to zero-second time interruption.
+- If the outage occurs in the active AZ: As we set the the Secondary region as being a Read replica, we have continuous replication of our data between the regions. Since the Secondary instance is already active, we will need to promote it as the master instance. Also it is necessary to reconfigure the address of the database on the applications. These steps are not automatically. It can take around 60-120 minutes.
 
 3. Minimum RPO for a single AZ outage
 The RPO (Recovery Point Objective) is the maximum duration that we will lose data during the switch between the two Availability Zones.
@@ -24,4 +24,4 @@ The RPO (Recovery Point Objective) is the maximum duration that we will lose dat
 This the maximum duration that we will lose data during the switch between the two Regions.
 
 - If the outage doesn't occur in the active region, the secondary Region won't lose data.
-- If the outage occurs in the active Region: This will be similar to the RTO, because the data is being copied from one place to the other. So we can expect around the same time frame.
+- If the outage occurs in the active Region: This will be similar to the RTO, because the data is being copied from one place to the other. So we can expect around the same time frame (60-120min).
