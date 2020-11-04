@@ -1,10 +1,21 @@
+ ~/Desktop/aws-cloud-architect  ssh -i "ec2-replica.pem" ec2-user@ec2-3-127-210-78.eu-central-1.compute.amazonaws.com
+Last login: Sun Nov  1 12:17:47 2020 from ip5f5af188.dynamic.kabel-deutschland.de
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+24 package(s) needed for security, out of 38 available
+Run "sudo yum update" to apply all updates.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
 [ec2-user@ip-10-2-10-97 ~]$ mysql -u admin -P 3306 -p -h database-1-read-replica.ccjtggyfrutl.eu-central-1.rds.amazonaws.com udacity
 Enter password:
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MySQL connection id is 16
+Your MySQL connection id is 18
 Server version: 8.0.20 Source distribution
 
 Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
